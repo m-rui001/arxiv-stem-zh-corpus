@@ -18,6 +18,8 @@
 | `pdf_text_scan.py` | 跨论文扫描：`pdftotext` 抽出的正文里是否混进 TeX 命令（`pdftotext` 抽不出中文，但 ASCII 与反斜杠抽得出来） | 在仓库根 `python tools/pdf_text_scan.py` |
 | `normalize_frags.py` | 合并并行分片：给缺 `#import` 的 `frag_*.typ` 补一行，并按标题表把 `===` 归一到正确层级（幂等） | `python tools/normalize_frags.py <typst 目录> --levels 层级表`（表每行 `层级	标题名`） |
 | `block_math_fix.py` | 扫「误显示公式」：Typst 里 `$ x $`（`$` 后带空格）会单独占一行，属零告警缺陷 | `python tools/block_math_fix.py <typst 目录>`，报告写 `_b_blockmath.txt` |
+| `figure_pages.py` | 按页数彩色像素，定位示意图所在页（正文黑白、CeTZ 图带颜色），用来核对图是否都渲染出来 | 在渲染目录 `python ../../../tools/figure_pages.py "_b-*.png"` |
+| `math_slash_scan.py` | 抓 Typst 数学里被绝对值竖线破坏的 ASCII `/`（`|S|/2` 会渲染成残缺分式；行内比值该写 `#s`） | 在含 `frag_*.typ` 的目录 `python ../../../tools/math_slash_scan.py` |
 
 ## 从 tex 源到 refs.bib
 
