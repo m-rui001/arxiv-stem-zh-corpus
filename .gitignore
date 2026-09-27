@@ -1,0 +1,14 @@
+# 入库范围只有我们自己产出的东西：译文 Typst 源码、编译产物、体检脚本、看板与日志。
+# arXiv 的原始下载（tex 源、原图、src.tar.gz、解包出的 clean/）逐字受版权保护，一律不入库。
+/papers/*/*
+!/papers/*/typst/
+
+# 各 lane 的单字母前缀临时渲染与一次性脚本（_a / _b / _c / _d …）
+_*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# 备份文件
+*.bak
