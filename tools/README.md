@@ -28,6 +28,12 @@
 | `tex_strip_comments.py` | 剥掉 tex 注释，只留真正会被排版的正文，对照翻译时省一半阅读量 | 在解包目录 `python ../../tools/tex_strip_comments.py *.tex` |
 | `bib_filter_cited.py` | 从原始 `references.bib` 里只挑正文 `\cite` 到的条目，生成 `refs.bib` | `python ../../tools/bib_filter_cited.py main.tex references.bib refs.bib` |
 | `bib_clean_residue.py` | 删掉 ieee 样式不会打印、只会撑大文件的字段（abstract 等），并把标题里的 LaTeX 残留换成 Unicode | `python ../../tools/bib_clean_residue.py refs.bib` |
+| `bib_series_dot_scan.py` | 跨论文只读扫 `refs.bib` 的五类 ieee 失真：`series`+`volume` 重复印卷号、缩写刊名缺尾句点、`number` 误填四位卷号、`doi` 里塞 arXiv 号、`pages` 混 arXiv 号（`pp.` 降级成 `p.`） | 在仓库根 `python tools/bib_series_dot_scan.py` |
+
+`bib_series_dot_scan.py` 的"缺尾句点"一条**必须带缩写白名单**：`Phys. Rev. B`、
+`J. Vac. Sci. Technol. A` 这类以分册单字母收尾的刊名本就没有句点，`Bluefors.com`、
+`arXiv preprint arXiv:…` 也不该动。无白名单时全库报 233 处、全是噪声，加白名单后只剩
+2 处真错（`Zh. Eksp. Teor. Fiz`）。判"要不要句点"看的是**末词是不是截短词**，不是"结尾有没有点"。
 
 `bib_clean_residue.py` 用 python `str.replace` 改 bib 时，普通字符串里的 `\times`
 会被解释成"制表符 + imes"、匹配数静默为 0 —— 一律用 `r'...'` 原始串，
